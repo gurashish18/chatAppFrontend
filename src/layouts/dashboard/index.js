@@ -9,11 +9,13 @@ import {
 	Divider,
 	Avatar,
 	Switch,
+	Menu,
+	MenuItem,
 } from "@mui/material";
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import logo from "../../assets/Images/logo.ico";
-import { Nav_Buttons, Nav_Setting } from "../../data";
+import { Nav_Buttons, Nav_Setting, Profile_Menu } from "../../data";
 import { styled } from "@mui/material/styles";
 import useSettings from "../../hooks/useSettings";
 
@@ -69,12 +71,24 @@ const DashboardLayout = () => {
 	const [selectedTab, setSelectedTab] = useState(0);
 	const { onToggleMode } = useSettings();
 
+	const [anchorEl, setAnchorEl] = React.useState(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
 	return (
-		<>
+		<div style={{ display: "flex" }}>
 			<Box
 				p={2}
 				sx={{
-					backgroundColor: theme.palette.background.paper,
+					backgroundColor:
+						theme.palette.mode === "light"
+							? theme.palette.background.paper
+							: theme.palette.background.default,
 					width: 100,
 					height: "100vh",
 					boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
@@ -153,12 +167,44 @@ const DashboardLayout = () => {
 					</Stack>
 					<Stack direction={"column"} alignItems={"center"} spacing={2}>
 						<MaterialUISwitch onChange={() => onToggleMode()} defaultChecked />
-						<Avatar src={faker.image.avatar()} />
+						<Avatar
+							src={faker.image.avatar()}
+							id="basic-button"
+							aria-controls={open ? "basic-menu" : undefined}
+							aria-haspopup="true"
+							aria-expanded={open ? "true" : undefined}
+							onClick={handleClick}
+						/>
+						<Menu
+							id="basic-menu"
+							anchorEl={anchorEl}
+							open={open}
+							onClose={handleClose}
+							MenuListProps={{
+								"aria-labelledby": "basic-button",
+							}}
+						>
+							{Profile_Menu.map((profile) => (
+								<MenuItem onClick={handleClose}>
+									<Stack
+										p={1}
+										direction={"row"}
+										gap={2}
+										sx={{ width: 100 }}
+										alignItems={"center"}
+										justifyContent={"space-between"}
+									>
+										{profile.title}
+										{profile.icon}
+									</Stack>
+								</MenuItem>
+							))}
+						</Menu>
 					</Stack>
 				</Stack>
 			</Box>
 			<Outlet />
-		</>
+		</div>
 	);
 };
 
