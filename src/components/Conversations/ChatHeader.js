@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { ToggleSidebar } from "../../redux/slices/app";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 	"& .MuiBadge-badge": {
@@ -44,6 +46,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const ChatHeader = ({ chat }) => {
+	const dispatch = useDispatch();
 	const theme = useTheme();
 	return (
 		<Box height={"80px"} sx={{ boxShadow: "0px 0px 4px 0px #00000040" }} p={2}>
@@ -53,7 +56,11 @@ const ChatHeader = ({ chat }) => {
 				alignItems="center"
 				justifyContent="space-between"
 			>
-				<Stack direction={"row"} spacing={2}>
+				<Stack
+					direction={"row"}
+					spacing={2}
+					onClick={() => dispatch(ToggleSidebar())}
+				>
 					{chat.online ? (
 						<StyledBadge
 							overlap="circular"
