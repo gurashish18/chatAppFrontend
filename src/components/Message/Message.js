@@ -10,7 +10,7 @@ import ReplyMessage from "./ReplyMessage";
 import DocMessage from "./DocMessage";
 import LinkMessage from "./LinkMessage";
 
-const Message = () => {
+const Message = ({ menu }) => {
 	return (
 		<Box p={3}>
 			<Stack direction={"column"} spacing={2}>
@@ -21,15 +21,15 @@ const Message = () => {
 						case "msg":
 							switch (el.subtype) {
 								case "img":
-									return <MediaMessage el={el} />;
+									return <MediaMessage el={el} menu={menu} />;
 								case "doc":
-									return <DocMessage el={el} />;
+									return <DocMessage el={el} menu={menu} />;
 								case "link":
-									return <LinkMessage el={el} />;
+									return <LinkMessage el={el} menu={menu} />;
 								case "reply":
-									return <ReplyMessage el={el} />;
+									return <ReplyMessage el={el} menu={menu} />;
 								default:
-									return <TextMessage el={el} />;
+									return <TextMessage el={el} menu={menu} />;
 							}
 						default:
 							return <></>;

@@ -33,7 +33,7 @@ function Conversations() {
 							: theme.palette.background.paper,
 				}}
 			>
-				<Message />
+				<Message menu={true} />
 			</Box>
 			{/* Chat footer */}
 			<ChatFooter />

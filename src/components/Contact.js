@@ -10,6 +10,12 @@ import {
 	Divider,
 	Avatar,
 	Button,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
+	Slide,
 } from "@mui/material";
 import {
 	XCircle,
@@ -26,9 +32,68 @@ import { ToggleSidebar } from "../redux/slices/app";
 import { UpdateSidebarType } from "../redux/slices/app";
 import { faker } from "@faker-js/faker";
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+	return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const BlockDialog = ({ open, handleClose }) => {
+	return (
+		<Dialog
+			open={open}
+			TransitionComponent={Transition}
+			keepMounted
+			onClose={handleClose}
+			aria-describedby="alert-dialog-slide-description"
+		>
+			<DialogTitle>Block this contact</DialogTitle>
+			<DialogContent>
+				<DialogContentText id="alert-dialog-slide-description">
+					Are you sure you want to block this Contact?
+				</DialogContentText>
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={handleClose}>Cancel</Button>
+				<Button onClick={handleClose}>Yes</Button>
+			</DialogActions>
+		</Dialog>
+	);
+};
+
+const DeleteChatDialog = ({ open, handleClose }) => {
+	return (
+		<Dialog
+			open={open}
+			TransitionComponent={Transition}
+			keepMounted
+			onClose={handleClose}
+			aria-describedby="alert-dialog-slide-description"
+		>
+			<DialogTitle>Delete this chat</DialogTitle>
+			<DialogContent>
+				<DialogContentText id="alert-dialog-slide-description">
+					Are you sure you want to delete this chat?
+				</DialogContentText>
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={handleClose}>Cancel</Button>
+				<Button onClick={handleClose}>Yes</Button>
+			</DialogActions>
+		</Dialog>
+	);
+};
+
 function Contact() {
 	const theme = useTheme();
 	const dispatch = useDispatch();
+	const [openBlock, setOpenBlock] = React.useState(false);
+	const [openDelete, setOpenDelete] = React.useState(false);
+
+	const handleCloseBlock = () => {
+		setOpenBlock(false);
+	};
+	const handleCloseDelete = () => {
+		setOpenDelete(false);
+	};
 	return (
 		<Box
 			sx={{
@@ -190,9 +255,9 @@ function Contact() {
 					<Divider />
 					<Stack direction="row" alignItems={"center"} spacing={2}>
 						<Button
-							// onClick={() => {
-							// 	setOpenBlock(true);
-							// }}
+							onClick={() => {
+								setOpenBlock(true);
+							}}
 							fullWidth
 							startIcon={<Prohibit />}
 							variant="outlined"
@@ -200,9 +265,9 @@ function Contact() {
 							Block
 						</Button>
 						<Button
-							// onClick={() => {
-							// 	setOpenDelete(true);
-							// }}
+							onClick={() => {
+								setOpenDelete(true);
+							}}
 							fullWidth
 							startIcon={<Trash />}
 							variant="outlined"
@@ -211,6 +276,12 @@ function Contact() {
 						</Button>
 					</Stack>
 				</Stack>
+				{openBlock && (
+					<BlockDialog open={openBlock} handleClose={handleCloseBlock} />
+				)}
+				{openDelete && (
+					<DeleteChatDialog open={openDelete} handleClose={handleCloseDelete} />
+				)}
 			</Stack>
 		</Box>
 	);

@@ -6,7 +6,7 @@ import { useTheme, alpha } from "@mui/material/styles";
 import { DownloadSimple, Image } from "phosphor-react";
 import MessageOptions from "./MessageOptions";
 
-function DocMessage({ el }) {
+function DocMessage({ el, menu }) {
 	const theme = useTheme();
 	return (
 		<Stack direction="row" justifyContent={el.incoming ? "start" : "end"}>
@@ -46,7 +46,7 @@ function DocMessage({ el }) {
 					</Typography>
 				</Stack>
 			</Box>
-			<MessageOptions />
+			{menu && <MessageOptions />}
 		</Stack>
 	);
 }

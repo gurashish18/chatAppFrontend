@@ -54,7 +54,7 @@ const StarredMessages = () => {
 					}}
 					spacing={3}
 				>
-					<Message />
+					<Message menu={false} />
 				</Stack>
 			</Stack>
 		</Box>

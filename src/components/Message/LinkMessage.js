@@ -6,7 +6,7 @@ import { alpha } from "@mui/material/styles";
 import Embed from "react-embed";
 import MessageOptions from "./MessageOptions";
 
-function LinkMessage({ el }) {
+function LinkMessage({ el, menu }) {
 	const theme = useTheme();
 	return (
 		<Stack direction="row" justifyContent={el.incoming ? "start" : "end"}>
@@ -48,7 +48,7 @@ function LinkMessage({ el }) {
 					</Typography>
 				</Stack>
 			</Box>
-			<MessageOptions />
+			{menu && <MessageOptions />}
 		</Stack>
 	);
 }

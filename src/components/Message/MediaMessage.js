@@ -4,7 +4,7 @@ import React from "react";
 import { Stack, Box, Typography, useTheme } from "@mui/material";
 import MessageOptions from "./MessageOptions";
 
-const MediaMessage = ({ el }) => {
+const MediaMessage = ({ el, menu }) => {
 	const theme = useTheme();
 	return (
 		<Stack
@@ -35,7 +35,7 @@ const MediaMessage = ({ el }) => {
 					<Typography variant="body2">{el.message}</Typography>
 				</Stack>
 			</Box>
-			<MessageOptions />
+			{menu && <MessageOptions />}
 		</Stack>
 	);
 };

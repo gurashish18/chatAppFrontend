@@ -95,10 +95,14 @@ const SharedMessages = () => {
 									</Grid>
 								);
 							case 1:
-								return Shared_links.map((el) => <LinkMessage el={el} />);
+								return Shared_links.map((el) => (
+									<LinkMessage el={el} menu={false} />
+								));
 
 							case 2:
-								return Shared_docs.map((el) => <DocMessage el={el} />);
+								return Shared_docs.map((el) => (
+									<DocMessage el={el} menu={false} />
+								));
 
 							default:
 								break;

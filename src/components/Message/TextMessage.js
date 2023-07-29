@@ -4,7 +4,7 @@ import React from "react";
 import { Stack, Box, Typography, useTheme } from "@mui/material";
 import MessageOptions from "./MessageOptions";
 
-const TextMessage = ({ el }) => {
+const TextMessage = ({ el, menu }) => {
 	const theme = useTheme();
 	return (
 		<Stack
@@ -29,7 +29,7 @@ const TextMessage = ({ el }) => {
 					{el.message}
 				</Typography>
 			</Box>
-			<MessageOptions />
+			{menu && <MessageOptions />}
 		</Stack>
 	);
 };
