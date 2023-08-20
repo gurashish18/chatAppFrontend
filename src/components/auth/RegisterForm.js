@@ -9,7 +9,6 @@ import {
 	IconButton,
 	Typography,
 	Stack,
-	useTheme,
 } from "@mui/material";
 import { Eye, EyeSlash } from "phosphor-react";
 import React, { useState } from "react";
@@ -17,7 +16,6 @@ import CompanyButton from "../buttons/CompanyButton";
 import PrimaryButton from "../buttons/PrimaryButton";
 
 function RegisterForm() {
-	const theme = useTheme();
 	const [showPassword, setShowPassword] = useState(false);
 
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -63,9 +61,6 @@ function RegisterForm() {
 						label="Password"
 					/>
 				</FormControl>
-				<Stack alignSelf={"flex-end"}>
-					<Typography variant="subtitle2">Forgot password?</Typography>
-				</Stack>
 				<PrimaryButton title={"REGISTER"} />
 				<Stack direction={"row"} alignItems={"center"} gap={1}>
 					<svg height="1">

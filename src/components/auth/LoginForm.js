@@ -9,15 +9,15 @@ import {
 	IconButton,
 	Typography,
 	Stack,
-	useTheme,
+	Link,
 } from "@mui/material";
 import { Eye, EyeSlash } from "phosphor-react";
 import React, { useState } from "react";
 import CompanyButton from "../buttons/CompanyButton";
 import PrimaryButton from "../buttons/PrimaryButton";
+import { Link as RouterLink } from "react-router-dom";
 
 function LoginForm() {
-	const theme = useTheme();
 	const [showPassword, setShowPassword] = useState(false);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -65,7 +65,14 @@ function LoginForm() {
 					/>
 				</FormControl>
 				<Stack alignSelf={"flex-end"}>
-					<Typography variant="subtitle2">Forgot password?</Typography>
+					<Link
+						to="/auth/reset-password"
+						component={RouterLink}
+						color="inherit"
+						variant="subtitle2"
+					>
+						Forgot password?
+					</Link>
 				</Stack>
 				<PrimaryButton title={"LOGIN"} handleClick={handleSubmit} />
 				<Stack direction={"row"} alignItems={"center"} gap={1}>
