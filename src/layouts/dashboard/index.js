@@ -13,7 +13,7 @@ import {
 	MenuItem,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import logo from "../../assets/Images/logo.ico";
 import { Nav_Buttons, Nav_Setting, Profile_Menu } from "../../data";
 import { styled } from "@mui/material/styles";
@@ -67,6 +67,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const DashboardLayout = () => {
+	const navigate = useNavigate();
 	const theme = useTheme();
 	const [selectedTab, setSelectedTab] = useState(0);
 	const { onToggleMode } = useSettings();
@@ -78,6 +79,21 @@ const DashboardLayout = () => {
 	};
 	const handleClose = () => {
 		setAnchorEl(null);
+	};
+
+	const getPath = (index) => {
+		switch (index) {
+			case 0:
+				return "/app";
+			case 1:
+				return "/group";
+			case 2:
+				return "/call";
+			case 3:
+				return "/settings";
+			default:
+				break;
+		}
 	};
 
 	return (
@@ -122,7 +138,10 @@ const DashboardLayout = () => {
 										p={1}
 									>
 										<IconButton
-											onClick={() => setSelectedTab(el.index)}
+											onClick={() => {
+												setSelectedTab(el.index);
+												navigate(getPath(el.index));
+											}}
 											sx={{ width: "max-content", color: "#fff" }}
 										>
 											{el.icon}
@@ -130,7 +149,10 @@ const DashboardLayout = () => {
 									</Box>
 								) : (
 									<IconButton
-										onClick={() => setSelectedTab(el.index)}
+										onClick={() => {
+											setSelectedTab(el.index);
+											navigate(getPath(el.index));
+										}}
 										sx={{
 											width: "max-content",
 											color: theme.palette.mode === "light" ? "#000" : "#fff",
@@ -158,7 +180,10 @@ const DashboardLayout = () => {
 									sx={{
 										color: theme.palette.mode === "light" ? "#000" : "#fff",
 									}}
-									onClick={() => setSelectedTab(Nav_Setting[0].index)}
+									onClick={() => {
+										navigate(getPath(3));
+										setSelectedTab(Nav_Setting[0].index);
+									}}
 								>
 									{Nav_Setting[0].icon}
 								</IconButton>
