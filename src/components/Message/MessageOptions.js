@@ -5,7 +5,6 @@ import * as React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Message_options } from "../../data";
-import { Stack } from "@mui/material";
 
 function MessageOptions() {
 	const [anchorEl, setAnchorEl] = React.useState(null);

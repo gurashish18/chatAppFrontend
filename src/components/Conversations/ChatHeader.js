@@ -3,7 +3,6 @@
 import {
 	Box,
 	Stack,
-	useTheme,
 	Avatar,
 	styled,
 	Badge,
@@ -47,7 +46,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const ChatHeader = ({ chat }) => {
 	const dispatch = useDispatch();
-	const theme = useTheme();
 	return (
 		<Box height={"80px"} sx={{ boxShadow: "0px 0px 4px 0px #00000040" }} p={2}>
 			<Stack

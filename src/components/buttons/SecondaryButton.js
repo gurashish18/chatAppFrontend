@@ -10,7 +10,7 @@ function SecondaryButton({ title, handleClick }) {
 			onClick={handleClick}
 			style={{
 				border: "1px solid #5B96F7",
-				backgroundColor: (theme) =>
+				backgroundColor:
 					theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background,
 				color: "#5B96F7",
 				padding: "15px 0px",

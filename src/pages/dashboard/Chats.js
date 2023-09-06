@@ -3,7 +3,6 @@
 import {
 	Box,
 	Divider,
-	Hidden,
 	IconButton,
 	Stack,
 	Typography,

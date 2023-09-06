@@ -10,7 +10,6 @@ import {
 	Badge,
 	Typography,
 } from "@mui/material";
-import { faker } from "@faker-js/faker";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 	"& .MuiBadge-badge": {

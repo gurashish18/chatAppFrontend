@@ -25,7 +25,6 @@ const StyledInput = styled(TextField)(({ theme }) => ({
 }));
 
 function ChatInput({ setEmojiPicker }) {
-	const theme = useTheme();
 	const [isActionsOpen, setIsActionsOpen] = useState(false);
 	return (
 		<StyledInput

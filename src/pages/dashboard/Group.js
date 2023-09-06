@@ -9,7 +9,7 @@ import {
 	Link,
 	Divider,
 } from "@mui/material";
-import { MagnifyingGlass, Plus } from "phosphor-react";
+import { Plus } from "phosphor-react";
 import { useTheme } from "@mui/material/styles";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 import { ChatList } from "../../data";
@@ -17,11 +17,8 @@ import ChatElement from "../../components/ChatElement";
 import Search from "../../components/Search/Search";
 
 const Group = () => {
-	const [openDialog, setOpenDialog] = useState(false);
+	const [, setOpenDialog] = useState(false);
 
-	const handleCloseDialog = () => {
-		setOpenDialog(false);
-	};
 	const handleOpenDialog = () => {
 		setOpenDialog(true);
 	};
